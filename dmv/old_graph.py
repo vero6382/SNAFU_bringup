@@ -15,7 +15,7 @@ def overall_stats():
       highest_freq.append((row[4], row[5], row[6]))
       freqs.append(int(row[6]))
       print(int(row[6]))
-      execution_time = (float(row[3].split(":")[2])/30000) # I actually don't know what the time will be here... RIP
+      execution_time = (float(row[3].split(":")[2])/30000)
       times.append(execution_time)
       line_count += 1
 

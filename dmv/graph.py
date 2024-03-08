@@ -9,21 +9,22 @@ def overall_stats():
   sorted_times = []
 
   # find the times
-  with open('dmv_unroll.csv') as csv_file:
+  with open('dmv_time.csv') as csv_file:
     csv_reader = csv.reader(csv_file, delimiter=',')
     line_count = 0
     for row in csv_reader:
-      if (line_count % 2 == 1): 
-        highest_freq.append((row[4], row[5], row[6]))
-        execution_time = (float(row[3].split(":")[2])/30000)
-        if (row[2] == "True"):
-          times.append(execution_time)
-          sorted_times.append(execution_time)
-          freqs.append(int(row[6]))
-        else:
-          times.append(-1) # invalidate this data point
-          print("re-measure this - ", row)
-      line_count += 1
+      highest_freq.append((row[4], row[5], row[6]))
+      execution_time = (float(row[3].split(":")[2])/30000)
+      if (row[2] == "True"):
+        times.append(execution_time)
+        sorted_times.append(execution_time)
+        freqs.append(int(row[6]))
+      else:
+        times.append(-1) # invalidate this data point
+        print("re-measure this - ", row)
+    #line_count += 1
+
+  print("printing execution times -- ", times)
 
   # find the core power consumption:
   vdd_core = []
@@ -169,7 +170,7 @@ def overall_stats():
   p1 = ax.scatter(freqs_axis, min_energy_lst, label="Energy (in uJ)", color = "#7B2D43")
   p2 = twin1.scatter(freqs_axis, min_volt_lst, label="Voltage (in V)", color = "#59B217")
 
-  ax.set(xlim=(0, 100), ylim=(0, 30), xlabel="Frequency (in MHz)", ylabel="Energy (in uJ)")
+  ax.set(xlim=(0, 100), ylim=(0, 2), xlabel="Frequency (in MHz)", ylabel="Energy (in uJ)")
   twin1.set(ylim=(0, 1.25), ylabel="Voltage (in V)")
   
   ax.legend(handles=[p1, p2])
@@ -190,9 +191,9 @@ def overall_stats():
   # plt.scatter(mops_lst, energy_lst, label='Energy Consumption v MOPS')
 
   plt.xlabel('MOPS')
-  plt.xlim((0, 300))
+  plt.xlim((0, 325))
   plt.ylabel('Energy (in uJ)')
-  plt.ylim((0, 40))
+  plt.ylim((0, 2))
 
   # plt.title('Min. Energy vs MOPS for Dense Matrix Multiply (arith_ops = 524288)')
 
@@ -230,7 +231,7 @@ def overall_stats():
 
   plt.scatter(freqs_axis, max_gops_lst, label="Max GOPS/W per MHz Freq")
   plt.xlim(0, 140) # freqs
-  plt.ylim(0, 40)
+  plt.ylim(0, 50)
 
   # Adding labels and title
   plt.xlabel('Frequnecy (in MHz)')

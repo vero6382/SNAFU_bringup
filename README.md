@@ -2,7 +2,7 @@
 
 Currently still work in progress...
 
-Finished collecting data for dmm and dconv -- need to look into dmv a bit more (inconclusive as of 3/6/24)
+Finished collecting data for dmm, dconv, and dmv -- as of 3/8/24
 
 ## TLDR
 ### dmm
@@ -14,6 +14,11 @@ max GOPS/W = 14.231
 max MOPS = 216.3
 
 max GOPS/W = 23.942
+
+### dmv
+max MOPS = 300.74
+
+max GOPS/W = 35.485
 
 ## How to Graph:
 go into the {test_name} directory, and run 
